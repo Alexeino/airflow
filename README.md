@@ -36,3 +36,32 @@ Airflow has thousands of Operators such as ...
 - BashOperator for Bash
 - SQLExecuteQueryOperator for SQL query
 - FileSensor to wait for a file
+
+### Task & Task Instance
+A task is a specific instance of an operator. When an Operator is assigned to a DAG it becomes a task. Tasks are the actual unit of work that gets executed when you run the DAG. Any operator working or exectuing a task is a task instance.
+
+### Workflow
+A workflow is the entire process defined by your DAG, including all tasks and their dependencies. It represent the entire data pipeline, showing how all the pieces fit together to achieve your goal. Like an entire process of doing something like processing CSV files etc.
+
+## Limitations of Airflow | What Airflow is not ?
+- Not a realtime processing solution.
+- Not a Data processing framework, It's an orchestrator not a data processing engine.
+- Not a Storage System
+
+### Unfit Usecases for Airflow
+- High Frequency, sub-minute scheduling, like tasks every few seconds. It is for tasks to exectue that runs on intervals of minutes, hours or days.
+- Processing large dataset directly. If you mean to process terrabytes of data, You would use something like Spark. However you can use Airflow to trigger a Spark Job.
+- Real time data streaming, Use something like Kafka for that.
+- Overkill to use for simple and linear workflows with few dependencies. For such simple tasks running cronjob might be a simpler and better choice.
+
+## Common Architectures in Airflow
+
+### Single Node Architecture
+In this architecture all the components of the Airflow are running on the same machine.
+
+![Single Node Architecture](readme/snaa.png)
+
+### Multi Node Architecture
+Airflow runs across multiple nodes or machines and used in production environment.
+
+![Multi Node Architecture](readme/mnaa.png)
